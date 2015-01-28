@@ -16,18 +16,19 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
                 ('acronym', models.CharField(max_length=6)),
-                ('address', models.CharField(max_length=50)),
+                ('streetAddress', models.CharField(max_length=50)),
                 ('website', models.CharField(unique=True, max_length=255)),
-                ('phone', models.CharField(max_length=50)),
+                ('mailAddress', models.CharField(max_length=50)),
                 ('email', models.CharField(max_length=50)),
+                ('phone', models.CharField(max_length=50)),
+                ('countiesServed', models.CharField(max_length=500)),
+                ('consumers', models.IntegerField(default=0)),
+                ('montlyMeeting', models.CharField(max_length=20)),
+                ('annualMeeting', models.CharField(max_length=20)),
+                ('numberOfEmployees', models.IntegerField(default=0)),
+                ('milesOfLines', models.IntegerField(default=0)),
                 ('nextElectionTerms', models.CharField(max_length=50)),
                 ('servingTime', models.CharField(max_length=50)),
-                ('annualMeeting', models.CharField(max_length=20)),
-                ('montlyMeeting', models.CharField(max_length=20)),
-                ('memberMeters', models.IntegerField(default=0)),
-                ('consumers', models.IntegerField(default=0)),
-                ('milesOfLines', models.IntegerField(default=0)),
-                ('numberOfEmployees', models.IntegerField(default=0)),
                 ('bylaws', models.CharField(max_length=255)),
             ],
             options={
@@ -39,7 +40,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=20)),
-                ('etnicity', models.CharField(max_length=10)),
+                ('ethnicity', models.CharField(max_length=10)),
                 ('distric', models.CharField(max_length=255)),
                 ('title', models.CharField(max_length=20)),
                 ('coopId', models.ForeignKey(to='coopInfo.Cooperative')),
@@ -47,5 +48,21 @@ class Migration(migrations.Migration):
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='State',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=15)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='cooperative',
+            name='stateId',
+            field=models.ForeignKey(to='coopInfo.State'),
+            preserve_default=True,
         ),
     ]
