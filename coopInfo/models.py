@@ -36,6 +36,7 @@ class Person(models.Model):
     ethnicity = models.CharField(max_length=10)
     distric = models.CharField(max_length=255)
     title = models.CharField(max_length=20)
-    
+    inBoardSince = models.DateTimeField(null=True)
+
     def __unicode__(self):
         return self.name
