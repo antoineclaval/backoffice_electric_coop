@@ -11,9 +11,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RenameField(
+        migrations.AlterField(
             model_name='person',
-            old_name='etnicity',
-            new_name='ethnicity',
+            name='inBoardSince',
+            field=models.DateTimeField(null=True),
+            preserve_default=True,
         ),
     ]

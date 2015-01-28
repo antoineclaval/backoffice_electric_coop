@@ -43,6 +43,7 @@ class Migration(migrations.Migration):
                 ('ethnicity', models.CharField(max_length=10)),
                 ('distric', models.CharField(max_length=255)),
                 ('title', models.CharField(max_length=20)),
+                ('inBoardSince', models.DateTimeField()),
                 ('coopId', models.ForeignKey(to='coopInfo.Cooperative')),
             ],
             options={
