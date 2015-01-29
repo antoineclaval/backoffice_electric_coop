@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from coopInfo.models import Person, State
-from coopInfo.serializers import PersonSerializer, StateSerializer
+from coopInfo.models import Person, State, Cooperative
+from coopInfo.serializers import PersonSerializer, StateSerializer, CooperativeSerializer
 from rest_framework import generics
 
 
@@ -17,7 +17,14 @@ class StateList(generics.ListCreateAPIView):
     queryset = State.objects.all()
     serializer_class = StateSerializer
 
-
 class StateDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = State.objects.all()
     serializer_class = StateSerializer
+
+class CooperativeList(generics.ListCreateAPIView):
+    queryset = Cooperative.objects.all()
+    serializer_class = CooperativeSerializer
+
+class CooperativeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Cooperative.objects.all()
+    serializer_class = CooperativeSerializer
