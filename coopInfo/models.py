@@ -25,6 +25,7 @@ class Cooperative(models.Model):
     nextElectionTerms = models.CharField(max_length=50)
     servingTime = models.CharField(max_length=50)
     bylaws = models.CharField(max_length=255)
+    is990present = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name

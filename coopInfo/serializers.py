@@ -17,5 +17,5 @@ class CooperativeSerializer(serializers.ModelSerializer):
         model = Cooperative
         fields = ('id', 'stateId', 'name', 'acronym', 'streetAddress', 'website', 'mailAddress', 
             'email', 'phone', 'countiesServed', 'consumers', 'montlyMeeting', 'annualMeeting', 
-        	'numberOfEmployees', 'milesOfLines', 'nextElectionTerms', 'servingTime', 'bylaws')
+        	'numberOfEmployees', 'milesOfLines', 'nextElectionTerms', 'servingTime', 'bylaws', 'is990present')
 
