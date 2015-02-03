@@ -11,7 +11,7 @@ class Cooperative(models.Model):
     stateId = models.ForeignKey(State)
     name = models.CharField(max_length=50)
     acronym = models.CharField(max_length=6)
-    streetAddress = models.CharField(max_length=50)
+    streetAddress = models.CharField(max_length=150)
     website = models.CharField(max_length=255, unique=True)
     mailAddress = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
