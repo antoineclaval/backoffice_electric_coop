@@ -26,7 +26,8 @@
 *.log
 *.sql
 *.sqlite
-*.sqlite3
+# trailing * for handling sqlite3.back as well
+*.sqlite3*
 
 # OS generated files #
 ######################
@@ -37,3 +38,6 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+## File who dont belongs to version control ##
+secrets.json

@@ -10,21 +10,45 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+import json
+from unipath import Path
+from django.core.exceptions import ImproperlyConfigured
+
+#https://github.com/mikeorr/Unipath
+BASE_DIR = Path(__file__).ancestor(2)
+#https://docs.djangoproject.com/en/1.7/ref/settings/#media-root
+MEDIA_ROOT = BASE_DIR.child("media")
+STATIC_ROOT = BASE_DIR.child("static")
+TEMPLATE_DIRS = (BASE_DIR.child("templates"),)
+
+#https://docs.djangoproject.com/en/1.7/ref/settings/#media-url
+MEDIA_URL = '/media/'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
+STATIC_URL = '/static/'
+
+#JSON Based secret module, get the secrets value from un-versioned json file.
+with open("secrets.json") as f:
+    secrets = json.loads(f.read())
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+def get_secret(setting, secrets=secrets):
+    """Get secret variable or return an exception"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = 'Set the {0} environment variable'.format(setting)
+        raise ImproperlyConfigured(error_msg)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ktpiiojgx58$v+j@w6*3i4f#vir+@+f&6hmm68o8(h2#^mp!^&'
+SECRET_KEY = get_secret("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['91.121.119.153']
 
 
 # Application definition
@@ -70,7 +94,8 @@ DATABASES = {
 # Cross Origin Ressource Sharing 
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:9000'
+    'localhost:9000',
+    'http://91.121.119.153'
 )
 
 # Internationalization
@@ -85,9 +110,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-STATIC_URL = '/static/'

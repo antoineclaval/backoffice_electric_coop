@@ -38,6 +38,7 @@ class Person(models.Model):
     distric = models.CharField(max_length=255, blank=True)
     title = models.CharField(max_length=20, blank=True)
     inBoardSince = models.DateTimeField(null=True, verbose_name='in board since', blank=True)
+    picture = models.ImageField(upload_to='person', default='media/person/default.jpg')
 
     def __unicode__(self):
         return self.name
