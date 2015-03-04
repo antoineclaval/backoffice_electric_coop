@@ -19,7 +19,7 @@ class CooperativeAdmin(admin.ModelAdmin):
 	    ('Basic info', {'fields': ['name', 'website', 'acronym']}),
 	    ('Mail Info', {'fields': ['streetAddress', 'mailAddress']}),
 	    ('Contact', {'fields': ['email', 'phone']}),
-	    ('Administrative', {'fields':['bylaws','servingTime','nextElectionTerms','annualMeeting','montlyMeeting']}),
+	    ('Administrative', {'fields':['servingTime','nextElectionTerms','annualMeeting','montlyMeeting']}),
 	    ('Misc', {'fields': ['consumers','numberOfEmployees','milesOfLines','countiesServed']}),
 	    ('Documents', {'fields': ['bylaws', 'is990present']})
 	    ]

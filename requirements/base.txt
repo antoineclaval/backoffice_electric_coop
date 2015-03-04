@@ -3,3 +3,4 @@ django-cors-headers==1.0.0
 djangorestframework==3.0.4
 Pillow==2.7.0
 Unipath==1.1
+django-resized==0.3.4
