@@ -33,13 +33,17 @@ class Cooperative(models.Model):
 
 
 class Person(models.Model):
+
+    def content_file_name(instance, filename):
+        return '/'.join(['persons', instance.name.replace(" ","") + "-" + str(instance.coopId.id) + ".jpg"])
+
     coopId = models.ForeignKey(Cooperative)
     name = models.CharField(max_length=50)
     ethnicity = models.CharField(max_length=10, blank=True)
     distric = models.CharField(max_length=255, blank=True)
     title = models.CharField(max_length=20, blank=True)
     inBoardSince = models.DateTimeField(null=True, verbose_name='in board since', blank=True)
-    picture = ResizedImageField(size=[120, 150],upload_to='persons', default='/media/persons/default.jpg')
+    picture = ResizedImageField(size=[120, 150],upload_to=content_file_name, default='/media/persons/default.jpg')
 
     def __unicode__(self):
         return self.name
