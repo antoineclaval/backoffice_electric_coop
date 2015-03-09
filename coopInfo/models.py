@@ -14,7 +14,7 @@ class Cooperative(models.Model):
     acronym = models.CharField(max_length=6, blank=True)
     streetAddress = models.CharField(max_length=150, verbose_name='street address', blank=True)
     website = models.CharField(max_length=255, unique=True, blank=True)
-    mailAddress = models.CharField(max_length=50, verbose_name='mail address', blank=True)
+    mailAddress = models.CharField(max_length=80, verbose_name='mail address', blank=True)
     email = models.CharField(max_length=50, blank=True)
     phone = models.CharField(max_length=50, blank=True)
     countiesServed =  models.CharField(max_length=500, verbose_name='counties served', blank=True)
@@ -32,10 +32,10 @@ class Cooperative(models.Model):
         return self.name
 
 
-class Person(models.Model):
+def content_file_name(instance, filename):
+    return '/'.join(['persons', ''.join(e for e in instance.name if e.isalnum()) + "-" + str(instance.coopId.id) + ".jpg"])
 
-    def content_file_name(instance, filename):
-        return '/'.join(['persons', instance.name.replace(" ","") + "-" + str(instance.coopId.id) + ".jpg"])
+class Person(models.Model):
 
     coopId = models.ForeignKey(Cooperative)
     name = models.CharField(max_length=50)

@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from coopInfo.models import Person , Cooperative
+from coopInfo.models import Person , Cooperative, content_file_name
 
 class PersonContentFileNameTest(TestCase):
 
@@ -13,8 +13,21 @@ class PersonContentFileNameTest(TestCase):
         aCoop = Cooperative()
         aCoop.id = 12
 
-        aPerson.name = "Bob Biture"
         aPerson.coopId = aCoop 
 
-        result = aPerson.content_file_name(currentFileName)
+        result = content_file_name(aPerson, currentFileName)
         self.assertEqual(result, "persons/BobBiture-12.jpg")
+
+    def testSubmitAJpegWithNameWithSpecialChar(self):
+
+        aPerson  = Person()
+        currentFileName = "bob-19282.jpg"
+        aPerson.name = "Bob H. \"bubba\" Machin"
+
+        aCoop = Cooperative()
+        aCoop.id = 12
+
+        aPerson.coopId = aCoop 
+
+        result = content_file_name(aPerson, currentFileName)
+        self.assertEqual(result, "persons/BobHbubbaMachin-12.jpg")

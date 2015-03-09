@@ -27,6 +27,10 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATIC_URL = '/static/'
 
+STATICFILES_FINDERS = ( 
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
 SECRET_PATH = Path(BASE_DIR, "secrets.json")
 #JSON Based secret module, get the secrets value from un-versioned json file.
 with open(SECRET_PATH) as f:
