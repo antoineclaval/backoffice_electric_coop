@@ -1,5 +1,7 @@
 from django.db import models
 from django_resized import ResizedImageField
+from dateutil.relativedelta import relativedelta
+from django.utils import timezone
 
 class State(models.Model):
     name = models.CharField(max_length=15)
@@ -44,6 +46,9 @@ class Person(models.Model):
     title = models.CharField(max_length=20, blank=True)
     inBoardSince = models.DateTimeField(null=True, verbose_name='in board since', blank=True)
     picture = ResizedImageField(size=[120, 150],upload_to=content_file_name, default='/media/persons/default.jpg')
+
+    def numberOfYearsInBoard(self):
+        return relativedelta(timezone.now(), self.inBoardSince).years
 
     def __unicode__(self):
         return self.name

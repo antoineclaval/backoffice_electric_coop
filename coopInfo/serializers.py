@@ -5,7 +5,7 @@ from coopInfo.models import Person, State, Cooperative
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ('id', 'coopId', 'name', 'ethnicity', 'distric', 'title', 'inBoardSince', 'picture')
+        fields = ('id', 'coopId', 'name', 'ethnicity', 'distric', 'title', 'inBoardSince', 'picture', 'numberOfYearsInBoard')
 
 class StateSerializer(serializers.ModelSerializer):
     class Meta:
