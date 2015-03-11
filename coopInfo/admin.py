@@ -2,9 +2,9 @@ from django.contrib import admin
 from coopInfo.models import Cooperative , Person , State
 
 class PersonAdmin(admin.ModelAdmin):
-	list_display = ('name', 'ethnicity', 'coopId','title')
+	list_display = ('name', 'sex','ethnicity', 'coopId','title')
 	search_fields = ['name']
-	list_filter = ['ethnicity', 'title']
+	list_filter = ['ethnicity', 'title', 'sex']
 
 class PersonInline(admin.TabularInline):
     model = Person
