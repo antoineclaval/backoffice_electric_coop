@@ -1,0 +1,8 @@
+{% block content %}
+    <h2>Cooperatives</h2>
+    <ul>
+        {% for cooperative in object_list %}
+            <li>{{ cooperative.name }}, {{cooperative.stateId}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

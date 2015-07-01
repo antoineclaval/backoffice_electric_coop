@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 from coopInfo.models import Person, State, Cooperative
 from coopInfo.serializers import PersonSerializer, StateSerializer, CooperativeSerializer
 from rest_framework import generics
@@ -27,3 +28,9 @@ class CooperativeList(generics.ListCreateAPIView):
 class CooperativeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cooperative.objects.all()
     serializer_class = CooperativeSerializer
+
+class CooperativeListWeb(ListView):
+    model = Cooperative
+
+class PersonListWeb(ListView):
+    model = Person
